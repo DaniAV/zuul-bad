@@ -34,7 +34,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room entrada, biblioteca, cocina, habitacion, salon, baño, almacen;
+        Room entrada, biblioteca, cocina, habitacion, salon, baño, almacen, patio;
         // create the rooms
         entrada = new Room("entrada de la casa");
         biblioteca = new Room("biblioteca de la casa");
@@ -43,15 +43,17 @@ public class Game
         salon = new Room("salon de la casa");
         baño = new Room("baño de la casa");
         almacen = new Room("almacen de la casa");
+        patio = new Room ("patio de la casa");
         
         // initialise room exits
-        entrada.setExits(null, null, biblioteca, null);
-        biblioteca.setExits(entrada, baño, cocina, null);
-        cocina.setExits(biblioteca, salon, null, habitacion);
-        habitacion.setExits(null, cocina, null, null);
-        salon.setExits(baño, null, null, cocina);
-        baño.setExits(null, almacen, salon, biblioteca);
-        almacen.setExits(null, null, null, baño);
+        entrada.setExits(null, null, biblioteca, null, null);
+        biblioteca.setExits(entrada, baño, cocina, null, null);
+        cocina.setExits(biblioteca, salon, null, habitacion, null);
+        habitacion.setExits(null, cocina, null, null, null);
+        salon.setExits(baño, null, null, cocina, patio);
+        baño.setExits(null, almacen, salon, biblioteca, null);
+        almacen.setExits(null, null, null, baño, null);
+        
 
         currentRoom = entrada;  // start game outside
     }
