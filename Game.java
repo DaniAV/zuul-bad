@@ -153,14 +153,14 @@ public class Game
         String direction = command.getSecondWord();
         // Try to leave current room.
         Room nextRoom = null;
-        nextRoom.getExit(direction);
+        nextRoom = currentRoom.getExit(direction);
+        
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
             currentRoom = nextRoom;
             System.out.println("You are " + currentRoom.getDescription());
-            System.out.print("Exits: ");
             printLocationInfo();
             System.out.println();
         }
@@ -168,7 +168,7 @@ public class Game
     
       private void printLocationInfo()
     {
-        currentRoom.getExitString();
+        System.out.println(currentRoom.getExitString());
     }
     
     /** 
