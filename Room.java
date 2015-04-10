@@ -58,8 +58,7 @@ public class Room
 
     public Room getExit(String direction)
     {
-        Room t = exits.get(direction);
-        return t;
+        return exits.get(direction);
     }
 
     /**
@@ -77,17 +76,17 @@ public class Room
         if(exits.containsKey("east")){
             salidas += "east";
         }
-        if(exits.containsKey("southExit")){
-            salidas += "southExit ";
+        if(exits.containsKey("south")){
+            salidas += "south ";
         }
-        if(exits.containsKey("westExit")){
-            salidas += "westExit ";
+        if(exits.containsKey("west")){
+            salidas += "west ";
         }
-        if(exits.containsKey("southEastExit")){
-            salidas += "southEastExit ";
+        if(exits.containsKey("southEast")){
+            salidas += "southEast ";
         }
-        if(exits.containsKey("northWestExit")){
-            salidas += "northWestExit ";
+        if(exits.containsKey("northWest")){
+            salidas += "northWest ";
         }
         return salidas;   
     }
