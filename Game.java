@@ -46,13 +46,13 @@ public class Game
         patio = new Room ("patio de la casa");
         
         // initialise room exits
-        entrada.setExits(null, null, biblioteca, null, null);
-        biblioteca.setExits(entrada, baño, cocina, null, null);
-        cocina.setExits(biblioteca, salon, null, habitacion, null);
-        habitacion.setExits(null, cocina, null, null, null);
-        salon.setExits(baño, null, null, cocina, patio);
-        baño.setExits(null, almacen, salon, biblioteca, null);
-        almacen.setExits(null, null, null, baño, null);
+        entrada.setExits(null, null, biblioteca, null, null, null);
+        biblioteca.setExits(entrada, baño, cocina, null, null, null);
+        cocina.setExits(biblioteca, salon, null, habitacion, null, null);
+        habitacion.setExits(null, cocina, null, null, null, null);
+        salon.setExits(baño, null, null, cocina, patio, null);
+        baño.setExits(null, almacen, salon, biblioteca, null, null);
+        almacen.setExits(null, null, null, baño, null, null);
         
 
         currentRoom = entrada;  // start game outside
@@ -151,7 +151,6 @@ public class Game
         }
 
         String direction = command.getSecondWord();
-
         // Try to leave current room.
         Room nextRoom = null;
         nextRoom.getExit(direction);

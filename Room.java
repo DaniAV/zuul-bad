@@ -94,6 +94,25 @@ public class Room
      */
     public String getExitString()
     {
-        return this.description;   
+        String exits = "Exits: ";
+        if(northExit != null){
+            exits += "north ";
+        }
+        if(eastExit != null){
+            exits += "east ";
+        }
+        if(southExit != null){
+            exits += "south ";
+        }
+        if(westExit != null){
+            exits += "west ";
+        }
+        if(southEastExit != null){
+            exits += "southEast ";
+        }
+        if(northWestExit != null){
+            exits += "northEast ";
+        }
+        return exits;   
     }
 }
