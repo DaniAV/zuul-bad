@@ -38,15 +38,20 @@ public class Room
      * @param west The west exit.
      */
     public void setExits(Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
-    {
-        exits.put("north", north);
-        exits.put("east", east);
-        exits.put("south", south);
-        exits.put("west", west);
-        exits.put("southEast", southEast);
-        exits.put("northWest", northWest);
-     
-    }
+    { 
+        if(north != null)
+            exits.put("north",north);
+        if(east != null)		         
+            exits.put("east",east);
+        if(south != null)		         
+            exits.put("south",south);
+        if(west != null)		         
+            exits.put("west",west);
+        if(southEast != null)		         
+            exits.put("southEast",southEast);
+        if(northWest != null)		         
+            exits.put("northWest",northWest);
+    }		     
 
     /**
      * @return The description of the room.
@@ -74,7 +79,7 @@ public class Room
             salidas += "north ";
         }
         if(exits.containsKey("east")){
-            salidas += "east";
+            salidas += "east ";
         }
         if(exits.containsKey("south")){
             salidas += "south ";
@@ -83,7 +88,7 @@ public class Room
             salidas += "west ";
         }
         if(exits.containsKey("southEast")){
-            salidas += "southEast ";
+            salidas += "southEastE ";
         }
         if(exits.containsKey("northWest")){
             salidas += "northWest ";
