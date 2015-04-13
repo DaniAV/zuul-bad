@@ -44,7 +44,7 @@ public class CommandWords
      */
     public void showAll(){
         for(int i = 0; i<validCommands.length; i++){
-            System.out.println(i);
+            System.out.println(validCommands[i]);
         }
     }
 }

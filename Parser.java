@@ -64,7 +64,7 @@ public class Parser
     }
     
     /**
-     * Metodo que devuelve el atributo commands de esta clase
+     * Metodo que devuelve un objeto commandWords con los comands validos
      */
     public CommandWords printValidCommands()
     {
