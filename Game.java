@@ -19,7 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-        
+
     /**
      * Create the game and initialise its internal map.
      */
@@ -44,7 +44,7 @@ public class Game
         baño = new Room("baño de la casa");
         almacen = new Room("almacen de la casa");
         patio = new Room ("patio de la casa");
-        
+
         // initialise room exits
         entrada.setExit("south", biblioteca);
         biblioteca.setExit("north", entrada);
@@ -74,7 +74,7 @@ public class Game
 
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
-                
+
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -95,7 +95,7 @@ public class Game
         System.out.println("");
         printLocationInfo();
     }
-    
+
     /**
      * Given a command, process (that is: execute) the command.
      * @param command The command to be processed.
@@ -119,6 +119,9 @@ public class Game
         }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
+        }
+        else if(commandWord.equals("look")){
+            System.out.println(currentRoom.getLongDescription());
         }
 
         return wantToQuit;
@@ -156,7 +159,7 @@ public class Game
         // Try to leave current room.
         Room nextRoom = null;
         nextRoom = currentRoom.getExit(direction);
-        
+
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
@@ -166,12 +169,12 @@ public class Game
             System.out.println();
         }
     }
-    
-      private void printLocationInfo()
+
+    private void printLocationInfo()
     {
         System.out.println(currentRoom.getLongDescription());
     }
-    
+
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
@@ -187,4 +190,5 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
+
 }
