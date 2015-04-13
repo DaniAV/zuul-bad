@@ -62,4 +62,12 @@ public class Parser
             return new Command(null, word2); 
         }
     }
+    
+    /**
+     * Metodo que devuelve el atributo commands de esta clase
+     */
+    public CommandWords printValidCommands()
+    {
+        return commands;
+    }
 }
