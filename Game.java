@@ -19,7 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-
+    private Room previousRoom;
     /**
      * Create the game and initialise its internal map.
      */
@@ -27,6 +27,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        previousRoom = null;
     }
 
     /**
@@ -131,6 +132,9 @@ public class Game
         else if(commandWord.equals("eat")){
             System.out.println("You have eaten now and you are not hungry any more");
         }
+        else if(commandWord.equals ("back")){
+            goPreviousRoom();
+        }
         return wantToQuit;
     }
 
@@ -149,13 +153,32 @@ public class Game
         System.out.println("Your command words are:");
         parser.printValidCommands();
     }
-
+    
+    /**
+     * Metodo que vuelve a la habitacion anterior en la que hemos estado
+     */
+    private void goPreviousRoom()
+    {
+        if(previousRoom != null)
+        {
+            currentRoom = previousRoom;
+            previousRoom = null;
+            printLocationInfo();
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No hay forma de volver");
+        }
+    }
+    
     /** 
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
     private void goRoom(Command command) 
     {
+
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             System.out.println("Go where?");
@@ -164,17 +187,20 @@ public class Game
 
         String direction = command.getSecondWord();
         // Try to leave current room.
-        Room nextRoom = null;
+        Room nextRoom = null; 
         nextRoom = currentRoom.getExit(direction);
+        
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
+            previousRoom = currentRoom;
             currentRoom = nextRoom;
             printLocationInfo();
             System.out.println();
         }
+        
     }
 
     private void printLocationInfo()
