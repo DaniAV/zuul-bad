@@ -1,3 +1,4 @@
+import java.util.Stack;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -19,7 +20,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private Room previousRoom;
+    private Stack<Room> pila;
     /**
      * Create the game and initialise its internal map.
      */
@@ -27,7 +28,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
-        previousRoom = null;
+        pila = new Stack<Room>();
     }
 
     /**
@@ -62,13 +63,14 @@ public class Game
         baño.setExit("east", almacen);
         baño.setExit("south", salon);
         almacen.setExit("west", baño);
-        
+
         //añadimos objetos a las localizaciones
         entrada.addItem(new Item("caja", 10));
         biblioteca.addItem(new Item("libro", 1));
         biblioteca.addItem(new Item ("enciclopedia", 2));
 
         currentRoom = entrada;  // start game outside
+
     }
 
     /**
@@ -153,25 +155,26 @@ public class Game
         System.out.println("Your command words are:");
         parser.printValidCommands();
     }
-    
+
     /**
      * Metodo que vuelve a la habitacion anterior en la que hemos estado
      */
     private void goPreviousRoom()
     {
-        if(previousRoom != null)
+        if(!pila.empty())
         {
-            currentRoom = previousRoom;
-            previousRoom = null;
+            currentRoom = pila.pop();
             printLocationInfo();
             System.out.println();
+            
         }
+       
         else
         {
             System.out.println("No hay forma de volver");
         }
     }
-    
+
     /** 
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
@@ -190,17 +193,16 @@ public class Game
         Room nextRoom = null; 
         nextRoom = currentRoom.getExit(direction);
         
-
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
-            previousRoom = currentRoom;
+            pila.push(currentRoom);
             currentRoom = nextRoom;
             printLocationInfo();
             System.out.println();
         }
-        
+
     }
 
     private void printLocationInfo()
