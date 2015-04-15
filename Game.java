@@ -36,14 +36,14 @@ public class Game
     {
         Room entrada, biblioteca, cocina, habitacion, salon, baño, almacen, patio;
         // create the rooms
-        entrada = new Room("entrada de la casa", "", 0);
-        biblioteca = new Room("biblioteca de la casa", "", 0);
-        cocina = new Room("cocina de la casa", "", 0);
-        habitacion = new Room("habitacion de la casa", "", 0);
-        salon = new Room("salon de la casa", "", 0);
-        baño = new Room("baño de la casa", "", 0);
-        almacen = new Room("almacen de la casa", "", 0);
-        patio = new Room ("patio de la casa", "", 0);
+        entrada = new Room("entrada de la casa");
+        biblioteca = new Room("biblioteca de la casa");
+        cocina = new Room("cocina de la casa");
+        habitacion = new Room("habitacion de la casa");
+        salon = new Room("salon de la casa");
+        baño = new Room("baño de la casa");
+        almacen = new Room("almacen de la casa");
+        patio = new Room ("patio de la casa");
 
         // initialise room exits
         entrada.setExit("south", biblioteca);
@@ -61,6 +61,11 @@ public class Game
         baño.setExit("east", almacen);
         baño.setExit("south", salon);
         almacen.setExit("west", baño);
+        
+        //añadimos objetos a las localizaciones
+        entrada.addItem(new Item("caja", 10));
+        biblioteca.addItem(new Item("libro", 1));
+        biblioteca.addItem(new Item ("enciclopedia", 2));
 
         currentRoom = entrada;  // start game outside
     }

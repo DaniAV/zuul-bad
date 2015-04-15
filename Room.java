@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -17,20 +18,18 @@ public class Room
 {
     private String description;
     private HashMap <String, Room> exits;
-    private String item;
-    private float kg;
+    private ArrayList<Item> item;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description, String Item, float kgItem ) 
+    public Room(String description) 
     {
         this.description = description;
         exits = new HashMap();
-        this.item = item;
-        this.kg = kgItem;
+        this.item = new ArrayList<Item>();
     }
 
     /**
@@ -96,7 +95,29 @@ public class Room
      */
     public String getLongDescription()
     {
-        return ("Usted esta en " + this.description  + " en la que hay un objeto "
-                +  this.item + " que pesa " + this.kg + "\n" + getExitString());
+        String mens = "";
+        for(int i = 0; i<item.size();i++){
+            mens += "\n-" + item.get(i).getDescription();
+        }
+
+        if(item.size() > 0){
+
+            mens = ("Usted esta en " + this.description  + " con objetos: "
+                + mens + "\n" + getExitString());
+        }
+        else{
+            mens = ("Usted esta en " + this.description  + " esta localizacion no contiente objetos " 
+                + "\n" + getExitString());
+            
+        }
+        return mens;
+    }
+
+    /**
+     * Metodo que permite añadir Items a una cierta localizacion
+     */
+    public void addItem(Item newItems)
+    {
+        item.add(newItems);
     }
 }
